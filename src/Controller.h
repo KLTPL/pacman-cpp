@@ -14,4 +14,6 @@ private:
 public:
     GameController();
     void drawView();
+    void listenForClicks();
+    void moveEntities();
 };

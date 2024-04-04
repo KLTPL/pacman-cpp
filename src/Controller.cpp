@@ -110,3 +110,11 @@ void GameController::drawView() {
         this->_model->getGameStatus()
     );
 }
+
+void GameController::listenForClicks() {
+    this->_model->listenForClicks();
+}
+
+void GameController::moveEntities() {
+    this->_model->moveEntities();
+}

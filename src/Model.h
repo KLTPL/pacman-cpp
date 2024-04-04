@@ -19,6 +19,7 @@ private:
         InitDataSuperCoinsData initSuperCoinsData
     );
     PorlatsData _getInitPortalsDataConverted(InitDataPorlatsData initPortalsData);
+    void movePacman();
 public:
     GameModel(
         InitDataFieldsIsWall initFieldsIsWall, 
@@ -30,4 +31,7 @@ public:
     );
     BoardDataRefForView getBoardDataRef();
     GameStatusForView getGameStatus();
+    void listenForClicks();
+    void moveEntities();
+    bool isPosIn(PosInt pos);
 };

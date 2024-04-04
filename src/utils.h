@@ -6,5 +6,7 @@ constexpr int
     SCREEN_WIDTH = 560, 
     SCREEN_HEIGHT = 620,
     FIELD_SIZE = SCREEN_WIDTH / FIELDS_X;
-    
+
+constexpr double
+    TIME_UNIT = 0.125 / 5;
     

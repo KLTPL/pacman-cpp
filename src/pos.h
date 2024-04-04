@@ -11,4 +11,10 @@ typedef struct PosDouble {
   double x;
 } PosDouble;
 
-typedef PosDouble Direction;
+enum Dir {
+  Forward = 1, Back = -1, Stop = 0
+};
+typedef struct Direction {
+  Dir y;
+  Dir x;
+} Direction;
