@@ -69,8 +69,8 @@ InitDataFieldsCoin GameController::getInitFieldsCoin() {
         {1, -1, 4, -1, 5, -1, 2, -1, 5, -1, 4, -1, 1},
         {1, -1, 4, -1, 5, -1, 2, -1, 5, -1, 4, -1, 1},
         {1, -1, 4, -1, 2, -4, 2, -4, 2, -1, 4, -1, 1},
-        {1, -1, 4, -1, 2, -1, 8, -1, 2 -1, 4, -1, 1},
-        {1, -1, 4, -1, 2, -1, 8, -1, 2 -1, 4, -1, 1},
+        {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
+        {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
         {1, -26, 1},
         {28}
     };
@@ -79,8 +79,8 @@ InitDataFieldsCoin GameController::getInitFieldsCoin() {
 
 InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
     InitDataSuperCoinsData ret = {
-        {2, 1}, {2, 27},
-        {27, 1}, {27, 27}
+        {2, 1}, {2, 26},
+        {27, 1}, {27, 26}
     };
     return ret;
 }
