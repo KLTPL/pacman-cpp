@@ -11,13 +11,13 @@ void Pacman::listenForClicks() {
     if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) {
 		this->_nextSpeedDir.x = Dir::Stop;
 		this->_nextSpeedDir.y = Dir::Back;
-	} else if (IsKeyPressed(KEY_S || IsKeyPressed(KEY_DOWN))) {
+	} else if (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)) {
 		this->_nextSpeedDir.x = Dir::Stop;
 		this->_nextSpeedDir.y = Dir::Forward;
-	} else if (IsKeyPressed(KEY_D || IsKeyPressed(KEY_RIGHT))) {
+	} else if (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)) {
 		this->_nextSpeedDir.x = Dir::Forward;
 		this->_nextSpeedDir.y = Dir::Stop;
-	} else if (IsKeyPressed(KEY_A || IsKeyPressed(KEY_LEFT))) {
+	} else if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)) {
 		this->_nextSpeedDir.x = Dir::Back;
 		this->_nextSpeedDir.y = Dir::Stop;
 	}
