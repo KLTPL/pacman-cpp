@@ -9,19 +9,12 @@ int main () {
     SetTargetFPS(60);
 
     GameController gameController = GameController();
-    Timer timer = Timer(TIME_UNIT);
 
     while (WindowShouldClose() == false){
         BeginDrawing();
         ClearBackground(BLACK);
 
-        gameController.drawView();
-        gameController.listenForClicks();
-        if (timer.isDone()) {
-            timer.reset(TIME_UNIT - timer.calcDelay());
-            gameController.moveEntities();
-        }
-
+        gameController.gameLoop();
         EndDrawing();
     }
 

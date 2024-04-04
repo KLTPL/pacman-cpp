@@ -93,18 +93,6 @@ InitDataPorlatsData GameController::getInitPorlatsData() {
     return ret;
 }
 
-GameController::GameController() {
-    this->_model = new GameModel(
-        this->getInitFieldsIsWall(), 
-        this->getInitFieldsCoin(), 
-        this->getInitSuperCoinsData(),
-        this->getInitPorlatsData(),
-        FIELDS_X,
-        FIELDS_Y
-    );
-    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE);
-}
-
 void GameController::drawView() {
     this->_view->draw(
         this->_model->getGameStatus()
@@ -117,4 +105,26 @@ void GameController::listenForClicks() {
 
 void GameController::moveEntities() {
     this->_model->moveEntities();
+}
+
+GameController::GameController() {
+    this->_timer = new Timer(TIME_UNIT);
+    this->_model = new GameModel(
+        this->getInitFieldsIsWall(), 
+        this->getInitFieldsCoin(), 
+        this->getInitSuperCoinsData(),
+        this->getInitPorlatsData(),
+        FIELDS_X,
+        FIELDS_Y
+    );
+    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE);
+}
+
+void GameController::gameLoop() {
+    this->drawView();
+    this->listenForClicks();
+    if (this->_timer->isDone()) {
+        this->_timer->reset(TIME_UNIT - this->_timer->calcDelay());
+        this->moveEntities();
+    }
 }
