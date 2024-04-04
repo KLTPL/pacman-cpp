@@ -1,19 +1,17 @@
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
-#include "../model/Model.h"
-#include "../view/View.h"
+#pragma once
 
-class PacmanController {
+#include "Model.h"
+#include "View.h"
+
+class GameController {
 private:
-    PacmanView *_view;
-    PacmanModel *_model;
+    GameView *_view;
+    GameModel *_model;
     InitDataFieldsIsWall getInitFieldsIsWall();
     InitDataFieldsCoin getInitFieldsCoin();
     InitDataSuperCoinsData getInitSuperCoinsData();
     InitDataPorlatsData getInitPorlatsData();
 public:
-    PacmanController();
-
+    GameController();
+    void drawView();
 };
-
-#endif 

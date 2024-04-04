@@ -1,22 +1,9 @@
-#include <iostream>
-#include "./Controller.h";
-#include "./utils/utils.h";
-#include "../model/Model.h";
-#include "../view/View.h";
+#include "Controller.h"
+#include "utils.h"
+#include "Model.h"
+#include "View.h"
 
-PacmanController::PacmanController() {
-    _model = new PacmanModel(
-        this->getInitFieldsIsWall(), 
-        this->getInitFieldsCoin(), 
-        this->getInitSuperCoinsData(),
-        this->getInitPorlatsData(),
-        FIELDS_WIDTH,
-        FIELDS_HEIGHT
-    );
-    _view = new PacmanView();
-}
-
-InitDataFieldsIsWall PacmanController::getInitFieldsIsWall() {
+InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
     InitDataFieldsIsWall ret = { // positive - amount of walls, negative - amount of empty fields
         {28},
         {1, -6, 2, -10, 2, -6, 1},
@@ -35,7 +22,7 @@ InitDataFieldsIsWall PacmanController::getInitFieldsIsWall() {
         {3, -1, 2, -4, 8, -4, 2, -1, 3},
         {3, -1, 2, -1, 2, -1, 8, -1, 2, -1, 2, -1, 3},
         {3, -1, 2, -1, 2, -1, 8, -1, 2, -1, 2, -1, 3},
-        {-7, 2, 10, 2, -7},
+        {-7, 2, -10, 2, -7},
         {3, -1, 8, -1, 2, -1, 8, -1, 3},
         {3, -1, 8, -1, 2, -1, 8, -1, 3},
         {3, -10, 2, -10, 3},
@@ -45,15 +32,15 @@ InitDataFieldsIsWall PacmanController::getInitFieldsIsWall() {
         {1, -1, 4, -1, 5, -1, 2, -1, 5, -1, 4, -1, 1},
         {1, -1, 4, -1, 5, -1, 2, -1, 5, -1, 4, -1, 1},
         {1, -1, 4, -1, 2, -4, 2, -4, 2, -1, 4, -1, 1},
-        {1, -1, 4, -1, 2, -1, 8, -1, 2 -1, 4, -1, 1},
-        {1, -1, 4, -1, 2, -1, 8, -1, 2 -1, 4, -1, 1},
+        {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
+        {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
         {1, -26, 1},
         {28}
     };
     return ret;
 }
 
-InitDataFieldsCoin PacmanController::getInitFieldsCoin() {
+InitDataFieldsCoin GameController::getInitFieldsCoin() {
     InitDataFieldsCoin ret = {
         {28},
         {1, -6, 2, -10, 2, -6, 1},
@@ -87,18 +74,39 @@ InitDataFieldsCoin PacmanController::getInitFieldsCoin() {
         {1, -26, 1},
         {28}
     };
+    return ret;
 }
 
-InitDataSuperCoinsData PacmanController::getInitSuperCoinsData() {
+InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
     InitDataSuperCoinsData ret = {
         {2, 1}, {2, 27},
         {27, 1}, {27, 27}
     };
+    return ret;
 }
 
-InitDataPorlatsData PacmanController::getInitPorlatsData() {
+InitDataPorlatsData GameController::getInitPorlatsData() {
     InitDataPorlatsData ret = {
         {{8, -1}, {8, 28}}, {{8, 28}, {8, -1}},
         {{17, -1}, {17, 28}}, {{17, 28}, {17, -1}}
     };
+    return ret;
+}
+
+GameController::GameController() {
+    this->_model = new GameModel(
+        this->getInitFieldsIsWall(), 
+        this->getInitFieldsCoin(), 
+        this->getInitSuperCoinsData(),
+        this->getInitPorlatsData(),
+        FIELDS_X,
+        FIELDS_Y
+    );
+    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE);
+}
+
+void GameController::drawView() {
+    this->_view->draw(
+        this->_model->getGameStatus()
+    );
 }

@@ -1,34 +1,40 @@
-// #include "./Model.h";
 #include <iostream>
 #include <vector>
-#include "./Model.h";
-#include "./utils/modelTypes.h";
+#include "Model.h"
+#include "modelTypes.h"
 
 
-PacmanModel::PacmanModel(
+GameModel::GameModel(
     InitDataFieldsIsWall initFieldsIsWall, 
     InitDataFieldsCoin initFieldsCoin, 
     InitDataSuperCoinsData initSuperCoinsData, 
     InitDataPorlatsData initPortalsData, 
-    int width, 
-    int height
+    int fieldsX, 
+    int fieldsY
 ) {
     this->_fieldsIsWall = this->_getInitFieldsIsWallConverted(initFieldsIsWall);
     this->_fieldsCoin = this->_getInitFieldsCoinConverted(initFieldsCoin, initSuperCoinsData);
     this->_portalsData = this->_getInitPortalsDataConverted(initPortalsData);
-    this->_width = width;
-    this->_height = height;
+    this->_fieldsX = fieldsX;
+    this->_fieldsY = fieldsY;
+    this->_pacman = new Pacman({23, 13.5}, {0, 0.2});
 }
 
-int PacmanModel::getWidth() {
-    return _width;
+BoardDataRefForView GameModel::getBoardDataRef() {
+    return {
+        this->_fieldsX,
+        this->_fieldsY,
+        &this->_fieldsIsWall,
+        &this->_fieldsCoin
+    };
+}
+GameStatusForView GameModel::getGameStatus() {
+    return {
+        this->_pacman->getPos()
+    };
 }
 
-int PacmanModel::getHeight() {
-    return _height;
-}
-
-FieldsIsWall PacmanModel::_getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall) {
+FieldsIsWall GameModel::_getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall) {
     FieldsIsWall ret;
     for (const auto &row : initFieldsIsWall) {
         std::vector<bool> newRow;
@@ -43,7 +49,7 @@ FieldsIsWall PacmanModel::_getInitFieldsIsWallConverted(InitDataFieldsIsWall ini
     return ret;
 }
 
-FieldsCoin PacmanModel::_getInitFieldsCoinConverted(
+FieldsCoin GameModel::_getInitFieldsCoinConverted(
     InitDataFieldsCoin initFieldsCoin, 
     InitDataSuperCoinsData initSuperCoinsData
 ) {
@@ -67,6 +73,6 @@ FieldsCoin PacmanModel::_getInitFieldsCoinConverted(
     return ret;
 }
 
-PorlatsData PacmanModel::_getInitPortalsDataConverted(InitDataPorlatsData initPortalsData) {
+PorlatsData GameModel::_getInitPortalsDataConverted(InitDataPorlatsData initPortalsData) {
     return initPortalsData;
 }

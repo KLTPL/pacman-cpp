@@ -1,16 +1,18 @@
-#ifndef MODEL_H
-#define MODEL_H
-#include <vector>
-#include "./utils/modelTypes.h"
-#include "../utils/pos.h"
+#pragma once
 
-class PacmanModel {
+#include <vector>
+#include "modelTypes.h"
+#include "pos.h"
+#include "Pacman.h"
+
+class GameModel {
 private:
     FieldsIsWall _fieldsIsWall;
     FieldsCoin _fieldsCoin;
     PorlatsData _portalsData;
-    int _width = 0;
-    int _height = 0;
+    int _fieldsX = 0;
+    int _fieldsY = 0;
+    Pacman *_pacman;
     FieldsIsWall _getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall);
     FieldsCoin _getInitFieldsCoinConverted(
         InitDataFieldsCoin initFieldsCoin, 
@@ -18,16 +20,14 @@ private:
     );
     PorlatsData _getInitPortalsDataConverted(InitDataPorlatsData initPortalsData);
 public:
-    PacmanModel(
+    GameModel(
         InitDataFieldsIsWall initFieldsIsWall, 
         InitDataFieldsCoin initFieldsCoin, 
         InitDataSuperCoinsData initSuperCoinsData, 
         InitDataPorlatsData initPortalsData, 
-        int width, 
-        int height
+        int fieldsX, 
+        int fieldsY
     );
-    int getWidth();
-    int getHeight();
+    BoardDataRefForView getBoardDataRef();
+    GameStatusForView getGameStatus();
 };
-
-#endif 
