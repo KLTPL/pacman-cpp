@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "Model.h"
 #include "modelTypes.h"
 
@@ -40,6 +41,7 @@ void GameModel::listenForClicks() {
 
 void GameModel::moveEntities() {
     this->movePacman();
+    this->collectCoinPacman();
 }
 
 FieldsIsWall GameModel::_getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall) {
@@ -104,6 +106,26 @@ void GameModel::movePacman() {
     }
     if (!p->isStopped()) {
         p->move();
+    }
+}
+
+void GameModel::collectCoinPacman() {
+    auto pPos = this->_pacman->getPos();
+    if (this->_fieldsCoin[round(pPos.y)][round(pPos.x)] != Coins::NoCoin) {
+        this->_playerPoints++;
+        this->_fieldsCoin[round(pPos.y)][round(pPos.x)] = Coins::NoCoin;
+    }
+    if ( // if in the middle between two fields also check the other field
+        !this->_pacman->isInFieldCenter() &&
+        (
+            (pPos.x != int(pPos.x) && ((int(pPos.x * 10) % 5) == 0)) ||
+            (pPos.y != int(pPos.y) && ((int(pPos.y * 10) % 5) == 0)) 
+        )
+    ) {
+        if (this->_fieldsCoin[int(pPos.y)][int(pPos.x)] != Coins::NoCoin) {
+            this->_playerPoints++;
+            this->_fieldsCoin[int(pPos.y)][int(pPos.x)] = Coins::NoCoin;
+        }
     }
 }
 

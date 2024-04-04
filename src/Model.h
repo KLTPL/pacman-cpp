@@ -13,6 +13,7 @@ private:
     int _fieldsX = 0;
     int _fieldsY = 0;
     Pacman *_pacman;
+    int _playerPoints = 0;
     FieldsIsWall _getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall);
     FieldsCoin _getInitFieldsCoinConverted(
         InitDataFieldsCoin initFieldsCoin, 
@@ -20,6 +21,7 @@ private:
     );
     PorlatsData _getInitPortalsDataConverted(InitDataPorlatsData initPortalsData);
     void movePacman();
+    void collectCoinPacman();
 public:
     GameModel(
         InitDataFieldsIsWall initFieldsIsWall, 
