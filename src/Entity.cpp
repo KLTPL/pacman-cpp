@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include <iostream>
 
 Entity::Entity(PosDouble startPos, Direction startSpeedDir) {
   this->_pos = startPos;
