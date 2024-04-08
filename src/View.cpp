@@ -1,3 +1,4 @@
+#include <iostream>
 #include "View.h"
 #include "raylib.h"
 
@@ -45,13 +46,31 @@ void GameView::drawCoins() {
     }
 };
 
-GameView::GameView(BoardDataRefForView boardDataRef, int fieldSizePx) {
+void GameView::drawBottomBar() {
+    const int fontSize = 15;
+    std::string pointsStr = std::to_string(*this->_boardDataRef.playerPoints);
+    auto pointsCStr = pointsStr.c_str();
+    int textWidth = MeasureText(pointsCStr, fontSize);
+    DrawText(
+        pointsCStr, 
+        (this->_screenWidth - textWidth) / 2,
+        this->_boardHeight + ((this->_bottomBarHeight - fontSize) / 2),
+        fontSize,
+        WHITE
+    );
+}
+
+GameView::GameView(BoardDataRefForView boardDataRef, const int fieldSizePx, const int screenWidth, const int boardHeight, const int bottomBarHeight) {
     this->_boardDataRef = boardDataRef;
     this->_fieldSizePx = fieldSizePx;
+    this->_screenWidth = screenWidth;
+    this->_boardHeight = boardHeight;
+    this->_bottomBarHeight = bottomBarHeight;
 }
 
 void GameView::draw(const GameStatusForView &gameStatus) {
     this->drawWalls();
     this->drawPacman(gameStatus);
     this->drawCoins();
+    this->drawBottomBar();
 }

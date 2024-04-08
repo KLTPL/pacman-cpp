@@ -117,7 +117,7 @@ GameController::GameController() {
         FIELDS_X,
         FIELDS_Y
     );
-    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE);
+    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE, SCREEN_WIDTH, BOARD_HEIGHT, BOTTOM_BAR_HEIGHT);
 }
 
 void GameController::gameLoop() {

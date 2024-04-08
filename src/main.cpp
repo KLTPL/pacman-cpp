@@ -7,7 +7,7 @@
 int main () {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pacman");
     SetTargetFPS(60);
-
+    std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << " " << FIELD_SIZE << "\n";
     GameController gameController = GameController();
 
     while (WindowShouldClose() == false){

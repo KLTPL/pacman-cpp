@@ -24,6 +24,7 @@ typedef PorlatsData InitDataPorlatsData;
 typedef struct BoardDataRefForView {
     int fieldsX;
     int fieldsY;
+    int *playerPoints;
     FieldsIsWall *fieldsIswall;
     FieldsCoin *fieldsCoin;
 } BoardDataRefForView;

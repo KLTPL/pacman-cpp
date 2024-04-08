@@ -25,6 +25,7 @@ BoardDataRefForView GameModel::getBoardDataRef() {
     return {
         this->_fieldsX,
         this->_fieldsY,
+        &this->_playerPoints,
         &this->_fieldsIsWall,
         &this->_fieldsCoin
     };
