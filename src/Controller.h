@@ -1,5 +1,6 @@
 #pragma once
 
+#include "controllerTypes.h"
 #include "Model.h"
 #include "View.h"
 #include "Timer.h"
@@ -9,6 +10,7 @@ private:
     GameView *_view;
     GameModel *_model;
     Timer *_timer;
+    double _timeUnit;
     InitDataFieldsIsWall getInitFieldsIsWall();
     InitDataFieldsCoin getInitFieldsCoin();
     InitDataSuperCoinsData getInitSuperCoinsData();
@@ -17,6 +19,6 @@ private:
     void listenForClicks();
     void moveEntities();
 public:
-    GameController();
+    GameController(ViewUnits viewUnits, double timeUnit);
     void gameLoop();
 };

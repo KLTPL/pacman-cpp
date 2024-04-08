@@ -1,5 +1,5 @@
 #include "Controller.h"
-#include "utils.h"
+#include "controllerTypes.h"
 #include "Model.h"
 #include "View.h"
 
@@ -107,24 +107,25 @@ void GameController::moveEntities() {
     this->_model->moveEntities();
 }
 
-GameController::GameController() {
-    this->_timer = new Timer(TIME_UNIT);
+GameController::GameController(ViewUnits viewUnits, double timeUnit) {
+    this->_timeUnit = timeUnit;
+    this->_timer = new Timer(timeUnit);
     this->_model = new GameModel(
         this->getInitFieldsIsWall(), 
         this->getInitFieldsCoin(), 
         this->getInitSuperCoinsData(),
         this->getInitPorlatsData(),
-        FIELDS_X,
-        FIELDS_Y
+        viewUnits.fieldsX,
+        viewUnits.fieldsY
     );
-    this->_view = new GameView(this->_model->getBoardDataRef(), FIELD_SIZE, SCREEN_WIDTH, BOARD_HEIGHT, BOTTOM_BAR_HEIGHT);
+    this->_view = new GameView(this->_model->getBoardDataRef(), viewUnits);
 }
 
 void GameController::gameLoop() {
     this->drawView();
     this->listenForClicks();
     if (this->_timer->isDone()) {
-        this->_timer->reset(TIME_UNIT - this->_timer->calcDelay());
+        this->_timer->reset(this->_timeUnit - this->_timer->calcDelay());
         this->moveEntities();
     }
 }

@@ -1,19 +1,17 @@
 #pragma once
 
 #include "modelTypes.h"
+#include "controllerTypes.h"
 
 class GameView {
 private:
-    int _fieldSizePx;
-    int _boardHeight;
-    int _screenWidth;
-    int _bottomBarHeight;
+    ViewUnits _units;
     BoardDataRefForView _boardDataRef;
     void drawWalls();
     void drawPacman(const GameStatusForView &gameStatus);
     void drawCoins();
     void drawBottomBar();
 public:
-    GameView(BoardDataRefForView boardDataRef, int fieldSizePx, int screenWidth, int boardHeight, int bottomBarHeight);
+    GameView(BoardDataRefForView boardDataRef, ViewUnits units);
     void draw(const GameStatusForView &gameStatus);
 };

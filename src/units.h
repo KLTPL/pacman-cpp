@@ -1,5 +1,3 @@
-#pragma once
-
 constexpr int 
     FIELDS_X = 28, 
     FIELDS_Y = 31,
@@ -11,4 +9,3 @@ constexpr int
 
 constexpr double
     TIME_UNIT = 0.125 / 5;
-    

@@ -3,7 +3,7 @@
 #include "raylib.h"
 
 void GameView::drawWalls() {
-    int fSize = this->_fieldSizePx;
+    int fSize = this->_units.fieldSizePx;
     for (int r = 0; r < this->_boardDataRef.fieldsY; r++) {
         for (int c = 0; c < this->_boardDataRef.fieldsX; c++) {
             DrawRectangle(
@@ -17,7 +17,7 @@ void GameView::drawWalls() {
     }
 }
 void GameView::drawPacman(const GameStatusForView &gameStatus) {
-    int fSize = this->_fieldSizePx;
+    int fSize = this->_units.fieldSizePx;
     double radius = fSize * 0.5;
     DrawCircle(
         gameStatus.pacmanPos.x * fSize + radius, 
@@ -27,7 +27,7 @@ void GameView::drawPacman(const GameStatusForView &gameStatus) {
     );
 }
 void GameView::drawCoins() {
-    const int fSize = this->_fieldSizePx;
+    const int fSize = this->_units.fieldSizePx;
     const int radiusBase = fSize / 5;
     const int radiusBetter = fSize / 3;
     for (int r = 0; r < this->_boardDataRef.fieldsY; r++) {
@@ -53,19 +53,16 @@ void GameView::drawBottomBar() {
     int textWidth = MeasureText(pointsCStr, fontSize);
     DrawText(
         pointsCStr, 
-        (this->_screenWidth - textWidth) / 2,
-        this->_boardHeight + ((this->_bottomBarHeight - fontSize) / 2),
+        (this->_units.screenWidth - textWidth) / 2,
+        this->_units.boardHeight + ((this->_units.bottomBarHeight - fontSize) / 2),
         fontSize,
         WHITE
     );
 }
 
-GameView::GameView(BoardDataRefForView boardDataRef, const int fieldSizePx, const int screenWidth, const int boardHeight, const int bottomBarHeight) {
+GameView::GameView(BoardDataRefForView boardDataRef, ViewUnits units) {
     this->_boardDataRef = boardDataRef;
-    this->_fieldSizePx = fieldSizePx;
-    this->_screenWidth = screenWidth;
-    this->_boardHeight = boardHeight;
-    this->_bottomBarHeight = bottomBarHeight;
+    this->_units = units;
 }
 
 void GameView::draw(const GameStatusForView &gameStatus) {
