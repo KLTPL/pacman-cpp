@@ -12,7 +12,7 @@ private:
     PortalsData _portalsData;
     int _fieldsX = 0;
     int _fieldsY = 0;
-    Pacman *_pacman;
+    Pacman _pacman;
     int _playerPoints = 0;
     FieldsIsWall _getInitFieldsIsWallConverted(InitDataFieldsIsWall initFieldsIsWall);
     FieldsCoin _getInitFieldsCoinConverted(

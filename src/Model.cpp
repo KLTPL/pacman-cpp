@@ -18,7 +18,7 @@ GameModel::GameModel(
     _portalsData(this->_getInitPortalsDataConverted(initPortalsData)),
     _fieldsX(fieldsX),
     _fieldsY(fieldsY),
-    _pacman(new Pacman({23, 13.5}, {Dir::Stop, Dir::Back}))
+    _pacman(Pacman({23, 13.5}, {Dir::Stop, Dir::Back}))
 {}
 
 BoardDataRefForView GameModel::getBoardDataRef() {
@@ -28,12 +28,12 @@ BoardDataRefForView GameModel::getBoardDataRef() {
         this->_playerPoints,
         this->_fieldsIsWall,
         this->_fieldsCoin,
-        this->_pacman->getPos()
+        this->_pacman.getPos()
     };
 }
 
 void GameModel::listenForClicks() {
-    this->_pacman->listenForClicks();
+    this->_pacman.listenForClicks();
 }
 
 void GameModel::moveEntities() {
@@ -85,7 +85,7 @@ PortalsData GameModel::_getInitPortalsDataConverted(InitDataPortalsData initPort
 }
 
 void GameModel::movePacman() {
-    auto p = this->_pacman;
+    Pacman* p = &this->_pacman;
     bool isInCenter = p->isInFieldCenter();
     if (p->isNextDirTurningBack() && !isInCenter) {
         p->updateDirection();
@@ -107,13 +107,13 @@ void GameModel::movePacman() {
 }
 
 void GameModel::collectCoinPacman() {
-    auto pPos = this->_pacman->getPos();
+    auto pPos = this->_pacman.getPos();
     if (this->_fieldsCoin[round(pPos.y)][round(pPos.x)] != Coins::NoCoin) {
         this->_playerPoints++;
         this->_fieldsCoin[round(pPos.y)][round(pPos.x)] = Coins::NoCoin;
     }
     if ( // if in the middle between two fields also check the other field
-        !this->_pacman->isInFieldCenter() &&
+        !this->_pacman.isInFieldCenter() &&
         (
             (pPos.x != int(pPos.x) && ((int(pPos.x * 10) % 5) == 0)) ||
             (pPos.y != int(pPos.y) && ((int(pPos.y * 10) % 5) == 0)) 
