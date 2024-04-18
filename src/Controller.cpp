@@ -3,8 +3,8 @@
 #include "Model.h"
 #include "View.h"
 
-InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
-    InitDataFieldsIsWall ret = { // positive - amount of walls, negative - amount of empty fields
+const InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
+    const InitDataFieldsIsWall ret = { // positive - amount of walls, negative - amount of empty fields
         {28},
         {1, -6, 2, -10, 2, -6, 1},
         {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
@@ -40,8 +40,8 @@ InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
     return ret;
 }
 
-InitDataFieldsCoin GameController::getInitFieldsCoin() {
-    InitDataFieldsCoin ret = {
+const InitDataFieldsCoin GameController::getInitFieldsCoin() {
+    const InitDataFieldsCoin ret = {
         {28},
         {1, -6, 2, -10, 2, -6, 1},
         {1, -1, 4, -1, 2, -1, 8, -1, 2, -1, 4, -1, 1},
@@ -77,16 +77,16 @@ InitDataFieldsCoin GameController::getInitFieldsCoin() {
     return ret;
 }
 
-InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
-    InitDataSuperCoinsData ret = {
+const InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
+    const InitDataSuperCoinsData ret = {
         {2, 1}, {2, 26},
         {27, 1}, {27, 26}
     };
     return ret;
 }
 
-InitDataPortalsData GameController::getInitPorlatsData() {
-    InitDataPortalsData ret = {
+const InitDataPortalsData GameController::getInitPorlatsData() {
+    const InitDataPortalsData ret = {
         {{8, -1}, {8, 28}}, {{8, 28}, {8, -1}},
         {{17, -1}, {17, 28}}, {{17, 28}, {17, -1}}
     };

@@ -11,10 +11,10 @@ private:
     Timer _timer;
     GameModel _model;
     GameView _view;
-    InitDataFieldsIsWall getInitFieldsIsWall();
-    InitDataFieldsCoin getInitFieldsCoin();
-    InitDataSuperCoinsData getInitSuperCoinsData();
-    InitDataPortalsData getInitPorlatsData();
+    const InitDataFieldsIsWall getInitFieldsIsWall();
+    const InitDataFieldsCoin getInitFieldsCoin();
+    const InitDataSuperCoinsData getInitSuperCoinsData();
+    const InitDataPortalsData getInitPorlatsData();
     void drawView();
     void listenForClicks();
     void moveEntities();
