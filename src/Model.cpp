@@ -9,7 +9,7 @@ GameModel::GameModel(
     InitDataFieldsIsWall initFieldsIsWall, 
     InitDataFieldsCoin initFieldsCoin, 
     InitDataSuperCoinsData initSuperCoinsData, 
-    InitDataPorlatsData initPortalsData, 
+    InitDataPortalsData initPortalsData, 
     int fieldsX, 
     int fieldsY
 ) {
@@ -84,7 +84,7 @@ FieldsCoin GameModel::_getInitFieldsCoinConverted(
     return ret;
 }
 
-PorlatsData GameModel::_getInitPortalsDataConverted(InitDataPorlatsData initPortalsData) {
+PortalsData GameModel::_getInitPortalsDataConverted(InitDataPortalsData initPortalsData) {
     return initPortalsData;
 }
 

@@ -85,8 +85,8 @@ InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
     return ret;
 }
 
-InitDataPorlatsData GameController::getInitPorlatsData() {
-    InitDataPorlatsData ret = {
+InitDataPortalsData GameController::getInitPorlatsData() {
+    InitDataPortalsData ret = {
         {{8, -1}, {8, 28}}, {{8, 28}, {8, -1}},
         {{17, -1}, {17, 28}}, {{17, 28}, {17, -1}}
     };

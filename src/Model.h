@@ -9,7 +9,7 @@ class GameModel {
 private:
     FieldsIsWall _fieldsIsWall;
     FieldsCoin _fieldsCoin;
-    PorlatsData _portalsData;
+    PortalsData _portalsData;
     int _fieldsX = 0;
     int _fieldsY = 0;
     Pacman *_pacman;
@@ -19,7 +19,7 @@ private:
         InitDataFieldsCoin initFieldsCoin, 
         InitDataSuperCoinsData initSuperCoinsData
     );
-    PorlatsData _getInitPortalsDataConverted(InitDataPorlatsData initPortalsData);
+    PortalsData _getInitPortalsDataConverted(InitDataPortalsData initPortalsData);
     void movePacman();
     void collectCoinPacman();
 public:
@@ -27,7 +27,7 @@ public:
         InitDataFieldsIsWall initFieldsIsWall, 
         InitDataFieldsCoin initFieldsCoin, 
         InitDataSuperCoinsData initSuperCoinsData, 
-        InitDataPorlatsData initPortalsData, 
+        InitDataPortalsData initPortalsData, 
         int fieldsX, 
         int fieldsY
     );

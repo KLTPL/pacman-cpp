@@ -14,7 +14,7 @@ private:
     InitDataFieldsIsWall getInitFieldsIsWall();
     InitDataFieldsCoin getInitFieldsCoin();
     InitDataSuperCoinsData getInitSuperCoinsData();
-    InitDataPorlatsData getInitPorlatsData();
+    InitDataPortalsData getInitPorlatsData();
     void drawView();
     void listenForClicks();
     void moveEntities();
