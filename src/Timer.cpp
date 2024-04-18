@@ -1,10 +1,10 @@
 #include "Timer.h"
 #include "raylib.h"
 
-Timer::Timer(double lifetime) {
-	this->_startTime = GetTime();
-	this->_liftime = lifetime;
-}
+Timer::Timer(double lifetime): 
+	_startTime(GetTime()), 
+	_liftime(lifetime) 
+{}
 
 void Timer::reset(double newLifetime) {
 	this->_startTime = GetTime();

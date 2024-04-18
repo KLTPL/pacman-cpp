@@ -2,37 +2,37 @@
 #include "View.h"
 #include "raylib.h"
 
-void GameView::drawWalls() {
+void GameView::drawWalls(const BoardDataRefForView &boardDataRef) {
     int fSize = this->_units.fieldSizePx;
-    for (int r = 0; r < this->_boardDataRef.fieldsY; r++) {
-        for (int c = 0; c < this->_boardDataRef.fieldsX; c++) {
+    for (int r = 0; r < boardDataRef.fieldsY; r++) {
+        for (int c = 0; c < boardDataRef.fieldsX; c++) {
             DrawRectangle(
                 c * fSize, 
                 r * fSize, 
                 fSize, 
                 fSize, 
-                ((*this->_boardDataRef.fieldsIswall)[r][c] == true) ? BLUE : BLACK
+                ((boardDataRef.fieldsIswall)[r][c] == true) ? BLUE : BLACK
             );
         }
     }
 }
-void GameView::drawPacman(const GameStatusForView &gameStatus) {
+void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
     int fSize = this->_units.fieldSizePx;
     double radius = fSize * 0.5;
     DrawCircle(
-        gameStatus.pacmanPos.x * fSize + radius, 
-        gameStatus.pacmanPos.y * fSize + radius,
+        boardDataRef.pacmanPos.x * fSize + radius, 
+        boardDataRef.pacmanPos.y * fSize + radius,
         radius,
         YELLOW
     );
 }
-void GameView::drawCoins() {
+void GameView::drawCoins(const BoardDataRefForView &boardDataRef) {
     const int fSize = this->_units.fieldSizePx;
     const int radiusBase = fSize / 5;
     const int radiusBetter = fSize / 3;
-    for (int r = 0; r < this->_boardDataRef.fieldsY; r++) {
-        for (int c = 0; c < this->_boardDataRef.fieldsX; c++) {
-            Coins coin = this->_boardDataRef.fieldsCoin->at(r).at(c);
+    for (int r = 0; r < boardDataRef.fieldsY; r++) {
+        for (int c = 0; c < boardDataRef.fieldsX; c++) {
+            Coins coin = boardDataRef.fieldsCoin.at(r).at(c);
             if (coin != Coins::NoCoin) {
                 const int currRad = coin == Coins::Base ? radiusBase : radiusBetter;
                 DrawCircle(
@@ -46,9 +46,9 @@ void GameView::drawCoins() {
     }
 };
 
-void GameView::drawBottomBar() {
+void GameView::drawBottomBar(const BoardDataRefForView &boardDataRef) {
     const int fontSize = 15;
-    std::string pointsStr = std::to_string(*this->_boardDataRef.playerPoints);
+    std::string pointsStr = std::to_string(boardDataRef.playerPoints);
     auto pointsCStr = pointsStr.c_str();
     int textWidth = MeasureText(pointsCStr, fontSize);
     DrawText(
@@ -60,14 +60,13 @@ void GameView::drawBottomBar() {
     );
 }
 
-GameView::GameView(BoardDataRefForView boardDataRef, ViewUnits units) {
-    this->_boardDataRef = boardDataRef;
-    this->_units = units;
-}
+GameView::GameView(ViewUnits units): 
+    _units(units) 
+{}
 
-void GameView::draw(const GameStatusForView &gameStatus) {
-    this->drawWalls();
-    this->drawPacman(gameStatus);
-    this->drawCoins();
-    this->drawBottomBar();
+void GameView::draw(const BoardDataRefForView &boardDataRef) {
+    this->drawWalls(boardDataRef);
+    this->drawPacman(boardDataRef);
+    this->drawCoins(boardDataRef);
+    this->drawBottomBar(boardDataRef);
 }

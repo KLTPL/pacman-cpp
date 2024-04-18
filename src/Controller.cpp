@@ -94,38 +94,38 @@ InitDataPortalsData GameController::getInitPorlatsData() {
 }
 
 void GameController::drawView() {
-    this->_view->draw(
-        this->_model->getGameStatus()
+    this->_view.draw(
+        this->_model.getBoardDataRef()
     );
 }
 
 void GameController::listenForClicks() {
-    this->_model->listenForClicks();
+    this->_model.listenForClicks();
 }
 
 void GameController::moveEntities() {
-    this->_model->moveEntities();
+    this->_model.moveEntities();
 }
 
-GameController::GameController(ViewUnits viewUnits, double timeUnit) {
-    this->_timeUnit = timeUnit;
-    this->_timer = new Timer(timeUnit);
-    this->_model = new GameModel(
+GameController::GameController(ViewUnits viewUnits, double timeUnit): 
+    _timeUnit(timeUnit),
+    _timer(Timer(timeUnit)),
+    _model(GameModel(
         this->getInitFieldsIsWall(), 
         this->getInitFieldsCoin(), 
         this->getInitSuperCoinsData(),
         this->getInitPorlatsData(),
         viewUnits.fieldsX,
         viewUnits.fieldsY
-    );
-    this->_view = new GameView(this->_model->getBoardDataRef(), viewUnits);
-}
+    )),
+    _view(GameView(viewUnits))
+{}
 
 void GameController::gameLoop() {
     this->drawView();
     this->listenForClicks();
-    if (this->_timer->isDone()) {
-        this->_timer->reset(this->_timeUnit - this->_timer->calcDelay());
+    if (this->_timer.isDone()) {
+        this->_timer.reset(this->_timeUnit - this->_timer.calcDelay());
         this->moveEntities();
     }
 }

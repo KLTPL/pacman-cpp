@@ -32,7 +32,6 @@ public:
         int fieldsY
     );
     BoardDataRefForView getBoardDataRef();
-    GameStatusForView getGameStatus();
     void listenForClicks();
     void moveEntities();
     bool isPosIn(PosInt pos);

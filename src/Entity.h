@@ -8,13 +8,13 @@ class Entity {
 protected:
   PosDouble _pos;
   double _speed = 0.125;
-  Direction _speedDir;
+  Direction _direction;
 public:
-  Entity(PosDouble startPos, Direction startSpeedDir);
+  Entity(PosDouble startPos, Direction startDirection);
   void move();
   PosInt calcNextPos();
   bool isInFieldCenter();
-  void setSpeedDir(Direction speedDir);
+  void setDirection(Direction direction);
 	PosDouble getPos();
-  Direction getSpeedDir();
+  Direction getDirection();
 };

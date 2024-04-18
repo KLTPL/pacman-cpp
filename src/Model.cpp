@@ -12,26 +12,22 @@ GameModel::GameModel(
     InitDataPortalsData initPortalsData, 
     int fieldsX, 
     int fieldsY
-) {
-    this->_fieldsIsWall = this->_getInitFieldsIsWallConverted(initFieldsIsWall);
-    this->_fieldsCoin = this->_getInitFieldsCoinConverted(initFieldsCoin, initSuperCoinsData);
-    this->_portalsData = this->_getInitPortalsDataConverted(initPortalsData);
-    this->_fieldsX = fieldsX;
-    this->_fieldsY = fieldsY;
-    this->_pacman = new Pacman({23, 13.5}, {Dir::Stop, Dir::Back});
-}
+): 
+    _fieldsIsWall(this->_getInitFieldsIsWallConverted(initFieldsIsWall)),
+    _fieldsCoin(this->_getInitFieldsCoinConverted(initFieldsCoin, initSuperCoinsData)),
+    _portalsData(this->_getInitPortalsDataConverted(initPortalsData)),
+    _fieldsX(fieldsX),
+    _fieldsY(fieldsY),
+    _pacman(new Pacman({23, 13.5}, {Dir::Stop, Dir::Back}))
+{}
 
 BoardDataRefForView GameModel::getBoardDataRef() {
     return {
         this->_fieldsX,
         this->_fieldsY,
-        &this->_playerPoints,
-        &this->_fieldsIsWall,
-        &this->_fieldsCoin
-    };
-}
-GameStatusForView GameModel::getGameStatus() {
-    return {
+        this->_playerPoints,
+        this->_fieldsIsWall,
+        this->_fieldsCoin,
         this->_pacman->getPos()
     };
 }
@@ -92,15 +88,15 @@ void GameModel::movePacman() {
     auto p = this->_pacman;
     bool isInCenter = p->isInFieldCenter();
     if (p->isNextDirTurningBack() && !isInCenter) {
-        p->updateSpeedDir();
+        p->updateDirection();
     } else if (isInCenter) {
         PosInt nextForNextDir = p->calcNextPos(false);
         if (!this->_fieldsIsWall[nextForNextDir.y][nextForNextDir.x]) {
-            p->updateSpeedDir();
+            p->updateDirection();
         }
         PosInt next = p->calcNextPos(true);
         if (!this->isPosIn(next) || this->_fieldsIsWall[next.y][next.x]) {
-            p->setSpeedDir(
+            p->setDirection(
                 {Dir::Stop, Dir::Stop}
             );
         }

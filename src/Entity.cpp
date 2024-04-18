@@ -1,19 +1,19 @@
 #include "Entity.h"
 
-Entity::Entity(PosDouble startPos, Direction startSpeedDir) {
-  this->_pos = startPos;
-  this->_speedDir = startSpeedDir;
-}
+Entity::Entity(PosDouble startPos, Direction startDirection): 
+  _pos(startPos), 
+  _direction(startDirection) 
+{}
 
 void Entity::move() {
-  this->_pos.x += this->_speedDir.x * this->_speed;
-  this->_pos.y += this->_speedDir.y * this->_speed;
+  this->_pos.x += this->_direction.x * this->_speed;
+  this->_pos.y += this->_direction.y * this->_speed;
 }
 
 PosInt Entity::calcNextPos() {
   return {
-    int(this->_pos.y) + this->_speedDir.y,
-    int(this->_pos.x) + this->_speedDir.x
+    int(this->_pos.y) + this->_direction.y,
+    int(this->_pos.x) + this->_direction.x
   };
 }
 
@@ -24,8 +24,8 @@ bool Entity::isInFieldCenter() {
   );
 }
 
-void Entity::setSpeedDir(Direction speedDir) {
-  this->_speedDir = speedDir;
+void Entity::setDirection(Direction direction) {
+  this->_direction = direction;
 }
 
 
@@ -33,6 +33,6 @@ PosDouble Entity::getPos() {
   return this->_pos;
 }
 
-Direction Entity::getSpeedDir() {
-  return this->_speedDir;
+Direction Entity::getDirection() {
+  return this->_direction;
 }

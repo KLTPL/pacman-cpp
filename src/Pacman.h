@@ -5,11 +5,11 @@
 
 class Pacman : public Entity {
 private:
-  Direction _nextSpeedDir;
+  Direction _nextdirection;
 public:
   Pacman(PosDouble startPos, Direction startDir);
   void listenForClicks();
-  void updateSpeedDir();
+  void updateDirection();
   PosInt calcNextPos(bool useCurrDir);
   bool isNextDirTurningBack();
   bool isStopped();

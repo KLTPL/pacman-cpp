@@ -6,12 +6,11 @@
 class GameView {
 private:
     ViewUnits _units;
-    BoardDataRefForView _boardDataRef;
-    void drawWalls();
-    void drawPacman(const GameStatusForView &gameStatus);
-    void drawCoins();
-    void drawBottomBar();
+    void drawWalls(const BoardDataRefForView &boardDataRef);
+    void drawPacman(const BoardDataRefForView &boardDataRef);
+    void drawCoins(const BoardDataRefForView &boardDataRef);
+    void drawBottomBar(const BoardDataRefForView &boardDataRef);
 public:
-    GameView(BoardDataRefForView boardDataRef, ViewUnits units);
-    void draw(const GameStatusForView &gameStatus);
+    GameView(ViewUnits units);
+    void draw(const BoardDataRefForView &boardDataRef);
 };

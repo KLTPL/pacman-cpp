@@ -7,10 +7,10 @@
 
 class GameController {
 private:
-    GameView *_view;
-    GameModel *_model;
-    Timer *_timer;
     double _timeUnit;
+    Timer _timer;
+    GameModel _model;
+    GameView _view;
     InitDataFieldsIsWall getInitFieldsIsWall();
     InitDataFieldsCoin getInitFieldsCoin();
     InitDataSuperCoinsData getInitSuperCoinsData();

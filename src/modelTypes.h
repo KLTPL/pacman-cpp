@@ -24,10 +24,8 @@ typedef PortalsData InitDataPortalsData;
 typedef struct BoardDataRefForView {
     int fieldsX;
     int fieldsY;
-    int *playerPoints;
-    FieldsIsWall *fieldsIswall;
-    FieldsCoin *fieldsCoin;
-} BoardDataRefForView;
-typedef struct GameStatusForView {
+    int playerPoints;
+    FieldsIsWall fieldsIswall;
+    FieldsCoin fieldsCoin;
     PosDouble pacmanPos;
-} GameStatusForView;
+} BoardDataRefForView;
