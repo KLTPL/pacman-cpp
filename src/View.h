@@ -8,7 +8,7 @@ class GameView {
 private:
     ViewUnits _units;
     int _gameTickCount = 0;
-    bool isEntityState1 = true;
+    bool _isEntityState1 = true;
     const PacmanImageData _pacmanImageData;
     void drawWalls(const BoardDataRefForView &boardDataRef);
     void drawPacman(const BoardDataRefForView &boardDataRef);

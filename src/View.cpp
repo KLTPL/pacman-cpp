@@ -28,7 +28,7 @@ void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
         h
     };
     float rotation = 0;
-    if (this->isEntityState1 || pData.direction.x == Dir::Forward) {
+    if (this->_isEntityState1 || pData.direction.x == Dir::Forward) {
         rotation = 0;
     } else if (pData.direction.x == Dir::Back) {
         rotation = 180;
@@ -40,7 +40,7 @@ void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
     bool isPacmanStopped = pData.direction.x == Dir::Stop && pData.direction.y == Dir::Stop;
     DrawTexturePro(
         pImg.texture, 
-        (this->isEntityState1 || isPacmanStopped ? pImg.sourceRec1 : pImg.sourceRec2), 
+        (this->_isEntityState1 || isPacmanStopped ? pImg.sourceRec1 : pImg.sourceRec2), 
         dest,
         {w / 2, h / 2},
         rotation, 
@@ -101,6 +101,6 @@ void GameView::draw(const BoardDataRefForView &boardDataRef) {
 void GameView::alternateEntityState() {
     this->_gameTickCount++;
     if (this->_gameTickCount % 10 == 0) {
-        this->isEntityState1 = !this->isEntityState1;
+        this->_isEntityState1 = !this->_isEntityState1;
     }
 }
