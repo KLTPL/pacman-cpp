@@ -2,7 +2,6 @@
 
 #include "View.h"
 #include "pos.h"
-#include "raylib.h"
 
 class Entity {
 protected:
