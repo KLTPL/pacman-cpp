@@ -99,6 +99,10 @@ void GameController::drawView() {
     );
 }
 
+void GameController::alternateEntitiesStateView() {
+    this->_view.alternateEntityState();
+}
+
 void GameController::listenForClicks() {
     this->_model.listenForClicks();
 }
@@ -127,5 +131,6 @@ void GameController::gameLoop() {
     if (this->_timer.isDone()) {
         this->_timer.reset(this->_timeUnit - this->_timer.calcDelay());
         this->moveEntities();
+        this->alternateEntitiesStateView();
     }
 }

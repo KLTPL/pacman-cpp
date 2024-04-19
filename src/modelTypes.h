@@ -21,11 +21,16 @@ typedef std::vector<std::vector<int>> InitDataFieldsCoin; // positive number - n
 typedef std::vector<PosInt> InitDataSuperCoinsData;
 typedef PortalsData InitDataPortalsData;
 
+typedef struct PacmanDataForView {
+    PosDouble pos;
+    Direction direction;
+} PacmanDataForView;
+
 typedef struct BoardDataRefForView {
     int fieldsX;
     int fieldsY;
     int playerPoints;
     FieldsIsWall fieldsIswall;
     FieldsCoin fieldsCoin;
-    PosDouble pacmanPos;
+    PacmanDataForView pacmanData;
 } BoardDataRefForView;

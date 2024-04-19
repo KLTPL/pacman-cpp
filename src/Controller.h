@@ -16,6 +16,7 @@ private:
     const InitDataSuperCoinsData getInitSuperCoinsData();
     const InitDataPortalsData getInitPorlatsData();
     void drawView();
+    void alternateEntitiesStateView();
     void listenForClicks();
     void moveEntities();
 public:

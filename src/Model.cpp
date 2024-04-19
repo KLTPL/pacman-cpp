@@ -28,7 +28,10 @@ BoardDataRefForView GameModel::getBoardDataRef() {
         this->_playerPoints,
         this->_fieldsIsWall,
         this->_fieldsCoin,
-        this->_pacman.getPos()
+        {
+            this->_pacman.getPos(),
+            this->_pacman.getDirection()
+        }
     };
 }
 
