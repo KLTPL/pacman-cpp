@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 #include "pos.h"
+#include "Direction.h"
 
 class Pacman : public Entity {
 private:

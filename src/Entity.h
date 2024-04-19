@@ -2,9 +2,10 @@
 
 #include "View.h"
 #include "pos.h"
+#include "Direction.h"
 
 class Entity {
-protected:
+private:
   PosDouble _pos;
   double _speed = 0.125;
   Direction _direction;

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "pos.h"
+#include "Direction.h"
 
 enum Coins {
     NoCoin, Base, Super

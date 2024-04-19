@@ -1,5 +1,6 @@
 #include "Pacman.h"
 #include "Entity.h"
+#include "Direction.h"
 
 #include "raylib.h"
 
@@ -10,42 +11,45 @@ Pacman::Pacman(PosDouble startPos, Direction startDir):
 
 void Pacman::listenForClicks() {
     if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) {
-		this->_nextdirection.x = Dir::Stop;
-		this->_nextdirection.y = Dir::Back;
+		this->_nextdirection.setX(Dir::Stop);
+		this->_nextdirection.setY(Dir::Back);
 	} else if (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)) {
-		this->_nextdirection.x = Dir::Stop;
-		this->_nextdirection.y = Dir::Forward;
+		this->_nextdirection.setX(Dir::Stop);
+		this->_nextdirection.setY(Dir::Forward);
 	} else if (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)) {
-		this->_nextdirection.x = Dir::Forward;
-		this->_nextdirection.y = Dir::Stop;
+		this->_nextdirection.setX(Dir::Forward);
+		this->_nextdirection.setY(Dir::Stop);
 	} else if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)) {
-		this->_nextdirection.x = Dir::Back;
-		this->_nextdirection.y = Dir::Stop;
+		this->_nextdirection.setX(Dir::Back);
+		this->_nextdirection.setY(Dir::Stop);
 	}
 }
 
 void Pacman::updateDirection() {
-	this->_direction = this->_nextdirection;
+	this->setDirection(this->_nextdirection);
 }
 
 PosInt Pacman::calcNextPos(bool useCurrDir) {
-	Direction dirToUse = useCurrDir ? this->_direction : this->_nextdirection;
+	Direction dirToUse = useCurrDir ? this->getDirection() : this->_nextdirection;
+	auto pos = this->getPos();
 	return {
-    	int(this->_pos.y) + dirToUse.y,
-    	int(this->_pos.x) + dirToUse.x
+    	int(pos.y) + dirToUse.y(),
+    	int(pos.x) + dirToUse.x()
   	};
 }
 
 bool Pacman::isNextDirTurningBack() {
+	auto direction = this->getDirection();
 	return (
-		this->_direction.x == -this->_nextdirection.x &&
-		this->_direction.y == -this->_nextdirection.y
+		direction.x() == -this->_nextdirection.x() &&
+		direction.y() == -this->_nextdirection.y()
 	);
 }
 
 bool Pacman::isStopped() {
+	auto direction = this->getDirection();
 	return (
-		this->_direction.x == Dir::Stop && 
-		this->_direction.y == Dir::Stop
+		direction.x() == Dir::Stop && 
+		direction.y() == Dir::Stop
 	);
 }

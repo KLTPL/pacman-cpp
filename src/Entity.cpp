@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Direction.h"
 
 Entity::Entity(PosDouble startPos, Direction startDirection): 
   _pos(startPos), 
@@ -6,14 +7,14 @@ Entity::Entity(PosDouble startPos, Direction startDirection):
 {}
 
 void Entity::move() {
-  this->_pos.x += this->_direction.x * this->_speed;
-  this->_pos.y += this->_direction.y * this->_speed;
+  this->_pos.x += this->_direction.x() * this->_speed;
+  this->_pos.y += this->_direction.y() * this->_speed;
 }
 
 PosInt Entity::calcNextPos() {
   return {
-    int(this->_pos.y) + this->_direction.y,
-    int(this->_pos.x) + this->_direction.x
+    int(this->_pos.y) + this->_direction.y(),
+    int(this->_pos.x) + this->_direction.x()
   };
 }
 
