@@ -103,9 +103,9 @@ GameView::GameView(ViewUnits units):
 
 void GameView::draw(const BoardDataRefForView &boardDataRef) {
     this->drawWalls(boardDataRef);
+    this->drawCoins(boardDataRef);
     this->drawPacman(boardDataRef);
     this->drawGhosts(boardDataRef);
-    this->drawCoins(boardDataRef);
     this->drawBottomBar(boardDataRef);
 }
 
