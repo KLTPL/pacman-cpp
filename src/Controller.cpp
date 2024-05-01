@@ -2,6 +2,7 @@
 #include "controllerTypes.h"
 #include "Model.h"
 #include "View.h"
+#include "Direction.h"
 
 const InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
     const InitDataFieldsIsWall ret = { // positive - amount of walls, negative - amount of empty fields
@@ -93,6 +94,21 @@ const InitDataPortalsData GameController::getInitPorlatsData() {
     return ret;
 }
 
+const InitPacmanData GameController::getInitPacmanData() {
+    return {
+        {23, 13.5}, 
+        {Dir::Stop, Dir::Back}
+    };
+}
+
+const PosDouble GameController::getInitStartGhostPos() {
+    return {11, 13};
+}
+
+const int GameController::getInitGhostsAmount() {
+    return 4;
+}
+
 void GameController::drawView() {
     this->_view.draw(
         this->_model.getBoardDataRef()
@@ -120,7 +136,10 @@ GameController::GameController(ViewUnits viewUnits, double timeUnit):
         this->getInitSuperCoinsData(),
         this->getInitPorlatsData(),
         viewUnits.fieldsX,
-        viewUnits.fieldsY
+        viewUnits.fieldsY,
+        this->getInitPacmanData(),
+        this->getInitStartGhostPos(),
+        this->getInitGhostsAmount()
     )),
     _view(GameView(viewUnits))
 {}

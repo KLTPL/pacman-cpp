@@ -47,6 +47,16 @@ void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
         WHITE
     );
 }
+void GameView::drawGhosts(const BoardDataRefForView &boardDataRef) {
+    for (const auto ghostPos : boardDataRef.ghostsPos) {
+        DrawCircle(
+            this->_units.fieldSizePx * (ghostPos.x + 0.5),
+            this->_units.fieldSizePx * (ghostPos.y + 0.5),
+            this->_units.fieldSizePx * 0.5,
+            PURPLE
+        );
+    }
+}
 void GameView::drawCoins(const BoardDataRefForView &boardDataRef) {
     const int fSize = this->_units.fieldSizePx;
     const int radiusBase = fSize / 5;
@@ -94,6 +104,7 @@ GameView::GameView(ViewUnits units):
 void GameView::draw(const BoardDataRefForView &boardDataRef) {
     this->drawWalls(boardDataRef);
     this->drawPacman(boardDataRef);
+    this->drawGhosts(boardDataRef);
     this->drawCoins(boardDataRef);
     this->drawBottomBar(boardDataRef);
 }

@@ -9,6 +9,8 @@ class Ghost : public Entity {
 private:
   std::vector<PosInt> _currPath;
 public:
-  Ghost(PosDouble startPos, Direction startDirection, std::vector<PosInt> currPath);
+  Ghost(PosDouble startPos, std::vector<PosInt> currPath);
   void updateDirectionFromCurrPath();
+  bool isPathEmpty();
+  void setPath(std::vector<PosInt> newPath);
 };

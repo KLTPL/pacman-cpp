@@ -15,6 +15,9 @@ private:
     const InitDataFieldsCoin getInitFieldsCoin();
     const InitDataSuperCoinsData getInitSuperCoinsData();
     const InitDataPortalsData getInitPorlatsData();
+    const InitPacmanData getInitPacmanData();
+    const PosDouble getInitStartGhostPos();
+    const int getInitGhostsAmount();
     void drawView();
     void alternateEntitiesStateView();
     void listenForClicks();

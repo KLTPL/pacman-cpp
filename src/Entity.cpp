@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Direction.h"
+#include <iostream>
 
 Entity::Entity(PosDouble startPos, Direction startDirection): 
   _pos(startPos), 

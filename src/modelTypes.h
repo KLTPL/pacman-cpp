@@ -34,4 +34,5 @@ typedef struct BoardDataRefForView {
     FieldsIsWall fieldsIswall;
     FieldsCoin fieldsCoin;
     PacmanDataForView pacmanData;
+    std::vector<PosDouble> ghostsPos;
 } BoardDataRefForView;

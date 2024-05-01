@@ -12,6 +12,7 @@ private:
     const PacmanImageData _pacmanImageData;
     void drawWalls(const BoardDataRefForView &boardDataRef);
     void drawPacman(const BoardDataRefForView &boardDataRef);
+    void drawGhosts(const BoardDataRefForView &boardDataRef);
     void drawCoins(const BoardDataRefForView &boardDataRef);
     void drawBottomBar(const BoardDataRefForView &boardDataRef);
 public:
