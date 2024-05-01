@@ -11,12 +11,14 @@ private:
     Timer _timer;
     GameModel _model;
     GameView _view;
+    bool _isGameRunning = true;
     const InitDataFieldsIsWall _getInitFieldsIsWall();
     const InitDataFieldsCoin _getInitFieldsCoin();
     const InitDataSuperCoinsData _getInitSuperCoinsData();
     const InitDataPortalsData _getInitPorlatsData();
     const InitPacmanData _getInitPacmanData();
     const PosDouble _getInitStartGhostPos();
+    const int _getInitCoinsAmount();
     const int _getInitGhostsAmount();
     void _drawView();
     void _alternateEntitiesStateView();

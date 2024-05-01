@@ -111,7 +111,7 @@ void GameView::draw(const BoardDataRefForView &boardDataRef) {
 
 void GameView::alternateEntityState() {
     this->_gameTickCount++;
-    if (this->_gameTickCount % 10 == 0) {
+    if (this->_gameTickCount % 7 == 0) {
         this->_isEntityState1 = !this->_isEntityState1;
     }
 }

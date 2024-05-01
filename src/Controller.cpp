@@ -102,7 +102,11 @@ const InitPacmanData GameController::_getInitPacmanData() {
 }
 
 const PosDouble GameController::_getInitStartGhostPos() {
-    return {11, 13};
+    return {11, 13.5};
+}
+
+const int GameController::_getInitCoinsAmount() {
+    return 224;
 }
 
 const int GameController::_getInitGhostsAmount() {
@@ -146,10 +150,19 @@ GameController::GameController(ViewUnits viewUnits, double timeUnit):
 
 void GameController::gameLoop() {
     this->_drawView();
-    this->_listenForClicks();
-    if (this->_timer.isDone()) {
-        this->_timer.reset(this->_timeUnit - this->_timer.calcDelay());
-        this->_moveEntities();
-        this->_alternateEntitiesStateView();
+    if (this->_isGameRunning) {
+        this->_listenForClicks();
+        if (this->_timer.isDone()) {
+            this->_timer.reset(this->_timeUnit - this->_timer.calcDelay());
+            this->_moveEntities();
+            this->_alternateEntitiesStateView();
+
+            if (
+                this->_model.getPlayerPoints() == this->_getInitCoinsAmount() || 
+                this->_model.isAnyGhostTouchingPacman()
+            ) {
+                this->_isGameRunning = false;
+            }
+        }
     }
 }

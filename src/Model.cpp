@@ -279,3 +279,21 @@ bool GameModel::isPosIn(PosInt pos) {
         pos.x >= 0 && pos.x < this->_fieldsX
     );
 }
+
+bool GameModel::isAnyGhostTouchingPacman() {
+    auto pPos = this->_pacman.getPos();
+    for (auto &ghost : this->_ghosts) {
+        auto gPos = ghost.getPos();
+        if (
+            (std::abs(pPos.y - gPos.y) < 1 && pPos.x == gPos.x) ||
+            (std::abs(pPos.x - gPos.x) < 1 && pPos.y == gPos.y)
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int GameModel::getPlayerPoints() {
+    return this->_playerPoints;
+}

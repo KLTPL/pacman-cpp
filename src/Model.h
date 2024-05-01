@@ -59,4 +59,6 @@ public:
     void _listenForClicks();
     void _moveEntities();
     bool isPosIn(PosInt pos);
+    bool isAnyGhostTouchingPacman();
+    int getPlayerPoints();
 };
