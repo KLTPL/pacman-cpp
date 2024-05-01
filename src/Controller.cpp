@@ -124,11 +124,11 @@ void GameController::_alternateEntitiesStateView() {
 }
 
 void GameController::_listenForClicks() {
-    this->_model._listenForClicks();
+    this->_model.listenForClicks();
 }
 
 void GameController::_moveEntities() {
-    this->_model._moveEntities();
+    this->_model.moveEntities();
 }
 
 GameController::GameController(ViewUnits viewUnits, double timeUnit): 

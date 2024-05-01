@@ -56,8 +56,8 @@ public:
         int initGhostsAmount
     );
     BoardDataRefForView getBoardDataRef();
-    void _listenForClicks();
-    void _moveEntities();
+    void listenForClicks();
+    void moveEntities();
     bool isPosIn(PosInt pos);
     bool isAnyGhostTouchingPacman();
     int getPlayerPoints();

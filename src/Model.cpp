@@ -53,11 +53,11 @@ BoardDataRefForView GameModel::getBoardDataRef() {
     };
 }
 
-void GameModel::_listenForClicks() {
-    this->_pacman._listenForClicks();
+void GameModel::listenForClicks() {
+    this->_pacman.listenForClicks();
 }
 
-void GameModel::_moveEntities() {
+void GameModel::moveEntities() {
     this->_movePacman();
     this->_collectCoinPacman();
     this->_moveGhosts();
