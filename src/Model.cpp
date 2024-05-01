@@ -130,7 +130,7 @@ void GameModel::_movePacman() {
 
 std::vector<PosInt> GameModel::_calcNewPathForGhost(PosDouble ghostPos) {
     PosInt ghostPosInt = {int(ghostPos.y), int(ghostPos.x)};
-    PosInt endPos = this->_genGoToPosAroundPacmanForGhost(0);
+    PosInt endPos = this->_genGoToPosAroundPacmanForGhost(5);
     VisitedFields visited;
     visited.resize(this->_fieldsY);
     for (int r = 0; r < this->_fieldsY; r++) {
@@ -222,10 +222,10 @@ std::vector<PosInt> GameModel::_getNeighbourFields(PosInt pos) { // return field
 PosInt GameModel::_genGoToPosAroundPacmanForGhost(double radius) {
     auto pPos = this->_pacman.getPos();
     auto minY = pPos.y - radius < 0 ? 0 : pPos.y - radius;
-    auto maxY = pPos.y + radius >= this->_fieldsY ? 0 : pPos.y + radius;
+    auto maxY = pPos.y + radius >= this->_fieldsY ? this->_fieldsY - 1 : pPos.y + radius;
     auto minX = pPos.x - radius < 0 ? 0 : pPos.x - radius;
-    auto maxX = pPos.x + radius >= this->_fieldsX ? 0 : pPos.x + radius;
-
+    auto maxX = pPos.x + radius >= this->_fieldsX ? this->_fieldsX - 1 : pPos.x + radius;
+    
     PosInt pos;
     do {
         int rangeY = int(round((maxY - minY + 1)));
