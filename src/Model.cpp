@@ -4,6 +4,7 @@
 #include <memory>
 #include <queue>
 #include <algorithm>
+#include <raylib.h>
 #include "Model.h"
 #include "modelTypes.h"
 #include "controllerTypes.h"
@@ -54,7 +55,15 @@ BoardDataRefForView GameModel::getBoardDataRef() {
 }
 
 void GameModel::listenForClicks() {
-    this->_pacman.listenForClicks();
+    if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) {
+        this->_pacman.setNextDirection(Direction(Dir::Back, Dir::Stop));
+	} else if (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)) {
+        this->_pacman.setNextDirection(Direction(Dir::Forward, Dir::Stop));
+	} else if (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)) {
+        this->_pacman.setNextDirection(Direction(Dir::Stop, Dir::Forward));
+	} else if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)) {
+        this->_pacman.setNextDirection(Direction(Dir::Stop, Dir::Back));
+	}
 }
 
 void GameModel::moveEntities() {
