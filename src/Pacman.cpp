@@ -9,7 +9,7 @@ Pacman::Pacman(PosDouble startPos, Direction startDir):
 	_nextdirection(startDir) 
 {}
 
-void Pacman::listenForClicks() {
+void Pacman::_listenForClicks() {
     if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) {
 		this->_nextdirection.setX(Dir::Stop);
 		this->_nextdirection.setY(Dir::Back);

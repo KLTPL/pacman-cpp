@@ -56,7 +56,7 @@ public:
         int initGhostsAmount
     );
     BoardDataRefForView getBoardDataRef();
-    void listenForClicks();
-    void moveEntities();
+    void _listenForClicks();
+    void _moveEntities();
     bool isPosIn(PosInt pos);
 };

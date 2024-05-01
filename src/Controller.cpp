@@ -4,7 +4,7 @@
 #include "View.h"
 #include "Direction.h"
 
-const InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
+const InitDataFieldsIsWall GameController::_getInitFieldsIsWall() {
     const InitDataFieldsIsWall ret = { // positive - amount of walls, negative - amount of empty fields
         {28},
         {1, -6, 2, -10, 2, -6, 1},
@@ -41,7 +41,7 @@ const InitDataFieldsIsWall GameController::getInitFieldsIsWall() {
     return ret;
 }
 
-const InitDataFieldsCoin GameController::getInitFieldsCoin() {
+const InitDataFieldsCoin GameController::_getInitFieldsCoin() {
     const InitDataFieldsCoin ret = {
         {28},
         {1, -6, 2, -10, 2, -6, 1},
@@ -78,7 +78,7 @@ const InitDataFieldsCoin GameController::getInitFieldsCoin() {
     return ret;
 }
 
-const InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
+const InitDataSuperCoinsData GameController::_getInitSuperCoinsData() {
     const InitDataSuperCoinsData ret = {
         {2, 1}, {2, 26},
         {27, 1}, {27, 26}
@@ -86,7 +86,7 @@ const InitDataSuperCoinsData GameController::getInitSuperCoinsData() {
     return ret;
 }
 
-const InitDataPortalsData GameController::getInitPorlatsData() {
+const InitDataPortalsData GameController::_getInitPorlatsData() {
     const InitDataPortalsData ret = {
         {{8, -1}, {8, 28}}, {{8, 28}, {8, -1}},
         {{17, -1}, {17, 28}}, {{17, 28}, {17, -1}}
@@ -94,62 +94,62 @@ const InitDataPortalsData GameController::getInitPorlatsData() {
     return ret;
 }
 
-const InitPacmanData GameController::getInitPacmanData() {
+const InitPacmanData GameController::_getInitPacmanData() {
     return {
         {23, 13.5}, 
         {Dir::Stop, Dir::Back}
     };
 }
 
-const PosDouble GameController::getInitStartGhostPos() {
+const PosDouble GameController::_getInitStartGhostPos() {
     return {11, 13};
 }
 
-const int GameController::getInitGhostsAmount() {
+const int GameController::_getInitGhostsAmount() {
     return 4;
 }
 
-void GameController::drawView() {
+void GameController::_drawView() {
     this->_view.draw(
         this->_model.getBoardDataRef()
     );
 }
 
-void GameController::alternateEntitiesStateView() {
+void GameController::_alternateEntitiesStateView() {
     this->_view.alternateEntityState();
 }
 
-void GameController::listenForClicks() {
-    this->_model.listenForClicks();
+void GameController::_listenForClicks() {
+    this->_model._listenForClicks();
 }
 
-void GameController::moveEntities() {
-    this->_model.moveEntities();
+void GameController::_moveEntities() {
+    this->_model._moveEntities();
 }
 
 GameController::GameController(ViewUnits viewUnits, double timeUnit): 
     _timeUnit(timeUnit),
     _timer(Timer(timeUnit)),
     _model(GameModel(
-        this->getInitFieldsIsWall(), 
-        this->getInitFieldsCoin(), 
-        this->getInitSuperCoinsData(),
-        this->getInitPorlatsData(),
+        this->_getInitFieldsIsWall(), 
+        this->_getInitFieldsCoin(), 
+        this->_getInitSuperCoinsData(),
+        this->_getInitPorlatsData(),
         viewUnits.fieldsX,
         viewUnits.fieldsY,
-        this->getInitPacmanData(),
-        this->getInitStartGhostPos(),
-        this->getInitGhostsAmount()
+        this->_getInitPacmanData(),
+        this->_getInitStartGhostPos(),
+        this->_getInitGhostsAmount()
     )),
     _view(GameView(viewUnits))
 {}
 
 void GameController::gameLoop() {
-    this->drawView();
-    this->listenForClicks();
+    this->_drawView();
+    this->_listenForClicks();
     if (this->_timer.isDone()) {
         this->_timer.reset(this->_timeUnit - this->_timer.calcDelay());
-        this->moveEntities();
-        this->alternateEntitiesStateView();
+        this->_moveEntities();
+        this->_alternateEntitiesStateView();
     }
 }

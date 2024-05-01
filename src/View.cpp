@@ -2,7 +2,7 @@
 #include "View.h"
 #include "raylib.h"
 
-void GameView::drawWalls(const BoardDataRefForView &boardDataRef) {
+void GameView::_drawWalls(const BoardDataRefForView &boardDataRef) {
     int fSize = this->_units.fieldSizePx;
     for (int r = 0; r < boardDataRef.fieldsY; r++) {
         for (int c = 0; c < boardDataRef.fieldsX; c++) {
@@ -16,7 +16,7 @@ void GameView::drawWalls(const BoardDataRefForView &boardDataRef) {
         }
     }
 }
-void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
+void GameView::_drawPacman(const BoardDataRefForView &boardDataRef) {
     auto pImg = this->_pacmanImageData;
     auto pData = boardDataRef.pacmanData;
     auto w = pImg.imageWidth;
@@ -47,7 +47,7 @@ void GameView::drawPacman(const BoardDataRefForView &boardDataRef) {
         WHITE
     );
 }
-void GameView::drawGhosts(const BoardDataRefForView &boardDataRef) {
+void GameView::_drawGhosts(const BoardDataRefForView &boardDataRef) {
     for (const auto ghostPos : boardDataRef.ghostsPos) {
         DrawCircle(
             this->_units.fieldSizePx * (ghostPos.x + 0.5),
@@ -57,7 +57,7 @@ void GameView::drawGhosts(const BoardDataRefForView &boardDataRef) {
         );
     }
 }
-void GameView::drawCoins(const BoardDataRefForView &boardDataRef) {
+void GameView::_drawCoins(const BoardDataRefForView &boardDataRef) {
     const int fSize = this->_units.fieldSizePx;
     const int radiusBase = fSize / 5;
     const int radiusBetter = fSize / 3;
@@ -77,7 +77,7 @@ void GameView::drawCoins(const BoardDataRefForView &boardDataRef) {
     }
 };
 
-void GameView::drawBottomBar(const BoardDataRefForView &boardDataRef) {
+void GameView::_drawBottomBar(const BoardDataRefForView &boardDataRef) {
     const int fontSize = 15;
     std::string pointsStr = std::to_string(boardDataRef.playerPoints);
     auto pointsCStr = pointsStr.c_str();
@@ -102,11 +102,11 @@ GameView::GameView(ViewUnits units):
     }) {}
 
 void GameView::draw(const BoardDataRefForView &boardDataRef) {
-    this->drawWalls(boardDataRef);
-    this->drawCoins(boardDataRef);
-    this->drawPacman(boardDataRef);
-    this->drawGhosts(boardDataRef);
-    this->drawBottomBar(boardDataRef);
+    this->_drawWalls(boardDataRef);
+    this->_drawCoins(boardDataRef);
+    this->_drawPacman(boardDataRef);
+    this->_drawGhosts(boardDataRef);
+    this->_drawBottomBar(boardDataRef);
 }
 
 void GameView::alternateEntityState() {

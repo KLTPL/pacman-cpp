@@ -11,17 +11,17 @@ private:
     Timer _timer;
     GameModel _model;
     GameView _view;
-    const InitDataFieldsIsWall getInitFieldsIsWall();
-    const InitDataFieldsCoin getInitFieldsCoin();
-    const InitDataSuperCoinsData getInitSuperCoinsData();
-    const InitDataPortalsData getInitPorlatsData();
-    const InitPacmanData getInitPacmanData();
-    const PosDouble getInitStartGhostPos();
-    const int getInitGhostsAmount();
-    void drawView();
-    void alternateEntitiesStateView();
-    void listenForClicks();
-    void moveEntities();
+    const InitDataFieldsIsWall _getInitFieldsIsWall();
+    const InitDataFieldsCoin _getInitFieldsCoin();
+    const InitDataSuperCoinsData _getInitSuperCoinsData();
+    const InitDataPortalsData _getInitPorlatsData();
+    const InitPacmanData _getInitPacmanData();
+    const PosDouble _getInitStartGhostPos();
+    const int _getInitGhostsAmount();
+    void _drawView();
+    void _alternateEntitiesStateView();
+    void _listenForClicks();
+    void _moveEntities();
 public:
     GameController(ViewUnits viewUnits, double timeUnit);
     void gameLoop();
